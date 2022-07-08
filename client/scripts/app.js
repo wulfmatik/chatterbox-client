@@ -30,6 +30,14 @@ var App = {
 
       // TODO: Use the data to update Messages and Rooms
       // and re-render the corresponding views.
+      for (var i = 0; i < data.length; i++) {
+        Messages.add(data[i]);
+        if (Rooms._data.indexOf(data[i]['roomname']) === -1) {
+          Rooms.add(data[i]['roomname']);
+        }
+      }
+      RoomsView.initialize();
+      MessagesView.initialize();
     });
   },
 

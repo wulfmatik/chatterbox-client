@@ -30,7 +30,7 @@ var RoomsView = {
     // TODO: Handle the user clicking the "Add Room" button.
     RoomsView.$button.click(function() {
       var room = prompt('Please enter your room name');
-
+      Rooms.add(room);
     });
   }
 
