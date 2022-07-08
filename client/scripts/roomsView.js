@@ -15,11 +15,24 @@ var RoomsView = {
 
   render: function() {
     // TODO: Render out the list of rooms.
+
+    for (var i = 0; i < Rooms._data.length; i++) {
+      RoomsView.$select.append(Rooms._data[i]);
+    }
+
   },
 
   renderRoom: function(roomname) {
     // TODO: Render out a single room.
-
+    // var roomList = Messages.retrieve(roomname);
+    // for (var i = 0; i < roomList.length; i++) {
+    //   MessagesView.renderMessage(roomList[i]);
+    // }
+    var $room = roomname;
+    //console.log(RoomsView.$select);
+    Rooms.add(roomname);
+    console.log('renderRoom:', Rooms);
+    RoomsView.$select.append(roomname);
   },
 
   handleChange: function(event) {
@@ -31,6 +44,8 @@ var RoomsView = {
     RoomsView.$button.click(function() {
       var room = prompt('Please enter your room name');
       Rooms.add(room);
+      console.log(Rooms);
+      RoomsView.$select.append(room);
     });
   }
 
