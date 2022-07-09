@@ -8,7 +8,7 @@ var MessagesView = {
     // TODO: Perform any work which needs to be done
     // when this view loads.
     // MessagesView.$chats.on('click', MessagesView.render());
-    MessagesView.render;
+    MessagesView.render();
   },
 
   render: function() {
@@ -23,7 +23,7 @@ var MessagesView = {
     // TODO: Render a single message.
     // append message to $chats
     var $message = MessageView.render(message);
-    // this.$chats.empty();
+
     this.$chats.append($message);
     console.log('in here');
   },

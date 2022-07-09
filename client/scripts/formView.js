@@ -25,6 +25,7 @@ var FormView = {
     // messages render is not refreshing when submit button is used
     var pass = function() {
       App.fetch();
+      $('#message').val('');
     };
 
     Messages.add(NewMessage);
@@ -32,9 +33,10 @@ var FormView = {
     // $('#chats').empty();
     // App.startSpinner();
     // App.fetch(App.stopSpinner);
-    console.log('server data upon submit', App.fetch());
+    //console.log('server data upon submit', App.fetch());
     // console.log('message data', Messages._data);
-    console.log('click!');
+    //console.log('click!');
+
   },
 
   setStatus: function(active) {

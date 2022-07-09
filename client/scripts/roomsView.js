@@ -10,7 +10,7 @@ var RoomsView = {
     // TODO: Perform any work which needs to be done
     // when this view loads.
     RoomsView.$button.on('click', RoomsView.handleClick);
-    RoomsView.$select.on('click', RoomsView.handleChange);
+    RoomsView.$select.on('change', RoomsView.handleChange);
   },
 
   render: function() {
@@ -34,9 +34,11 @@ var RoomsView = {
 
   handleChange: function(event) {
     // TODO: Handle a user selecting a different room.
-    $('chats').empty();
+    console.log('clicked room!');
+    $('#chats').empty();
     for (var i = 0; i < Messages._data.length; i++) {
-      if (Messages._data[i]['roomname'] === $('select').val()) {
+      if (Messages._data[i]['roomname'] === $('select :selected').text()) {
+        console.log(Messages._data[i]);
         MessagesView.renderMessage(Messages._data[i]);
       }
     }

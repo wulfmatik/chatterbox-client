@@ -1,8 +1,6 @@
 // This App object represents the Chatterbox application.
 // It should initialize the other parts of the application
 // and begin making requests to the Parse API for data.
-var newestMessage;
-var flag = false;
 
 
 var App = {
@@ -25,13 +23,13 @@ var App = {
     // TODO: Make sure the app loads data from the API
     // continually, instead of just once at the start.
     setInterval(function() {
-      //console.log('refresh');
-      $(document).ready(function() {
-        location.reload(true);
-      });
-      // App.fetch(App.stopSpinner);
-      // $('#chats').load(Parse.server + ' #chats');
-    }, 15000);
+      if ($('select :selected').text()) {
+        RoomsView.handleChange();
+      } else {
+        App.startSpinner();
+        App.fetch(App.stopSpinner);
+      }
+    }, 5000);
   },
 
   fetch: function(callback = ()=>{}) {
@@ -42,23 +40,17 @@ var App = {
 
       // TODO: Use the data to update Messages and Rooms
       // and re-render the corresponding views.
-
-      if (flag) {
-        for (var j = (data.indexOf(newestMessage) - 1); j >= 0; j--) {
-          Message.add(data[j]);
-        }
-        newestMessage = data[0]['message_id'];
-      } else if (data.length !== 0) {
-        Messages.add(data);
+      Messages._data = [];
+      Rooms._data = [];
+      if (data.length !== 0) {
         for (var i = 0; i < data.length; i++) {
+          Messages.add(data[i]);
           if (Rooms._data.indexOf(data[i]['roomname']) === -1) {
             Rooms.add(data[i]['roomname']);
           }
         }
-        newestMessage = data[0]['message_id'];
-        flag = true;
       }
-
+      $('#chats').empty();
       RoomsView.render();
       MessagesView.render();
     });
