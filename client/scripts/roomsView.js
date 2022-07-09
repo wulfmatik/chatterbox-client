@@ -9,17 +9,16 @@ var RoomsView = {
   initialize: function() {
     // TODO: Perform any work which needs to be done
     // when this view loads.
-    RoomsView.$button.on('click', RoomsView.handleClick());
-    RoomsView.$select.on('click', RoomsView.handleChange());
+    RoomsView.$button.on('click', RoomsView.handleClick);
+    RoomsView.$select.on('click', RoomsView.handleChange);
   },
 
   render: function() {
     // TODO: Render out the list of rooms.
-
     for (var i = 0; i < Rooms._data.length; i++) {
-      RoomsView.$select.append(Rooms._data[i]);
+      //RoomsView.$select.append(Rooms._data[i]);
+      RoomsView.renderRoom(Rooms._data[i]);
     }
-
   },
 
   renderRoom: function(roomname) {
@@ -29,14 +28,18 @@ var RoomsView = {
     //   MessagesView.renderMessage(roomList[i]);
     // }
     var $room = roomname;
-    //console.log(RoomsView.$select);
-    Rooms.add(roomname);
-    console.log('renderRoom:', Rooms);
-    RoomsView.$select.append(roomname);
+    var $option = $('<option>').val($room).text($room);
+    RoomsView.$select.append($option);
   },
 
   handleChange: function(event) {
     // TODO: Handle a user selecting a different room.
+    $('chats').empty();
+    for (var i = 0; i < Messages._data.length; i++) {
+      if (Messages._data[i]['roomname'] === $('select').val()) {
+        MessagesView.renderMessage(Messages._data[i]);
+      }
+    }
   },
 
   handleClick: function(event) {
@@ -48,5 +51,4 @@ var RoomsView = {
       RoomsView.$select.append(room);
     });
   }
-
 };

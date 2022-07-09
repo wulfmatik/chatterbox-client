@@ -1,6 +1,5 @@
 // MessagesView is an object which controls the DOM elements
 // responsible for displaying messages.
-
 var MessagesView = {
 
   $chats: $('#chats'),
@@ -8,13 +7,15 @@ var MessagesView = {
   initialize: function() {
     // TODO: Perform any work which needs to be done
     // when this view loads.
-    MessagesView.$chats.on('click', MessagesView.render());
+    // MessagesView.$chats.on('click', MessagesView.render());
+    MessagesView.render;
   },
 
   render: function() {
     // TODO: Render _all_ the messages.
+    console.log('Messages data arr in render func', Messages._data);
     for (var i = 0; i < Messages._data.length; i ++) {
-      MessagesView.renderMessage(Messages._data[i]);
+      this.renderMessage(Messages._data[i]);
     }
   },
 
@@ -22,7 +23,9 @@ var MessagesView = {
     // TODO: Render a single message.
     // append message to $chats
     var $message = MessageView.render(message);
-    MessagesView.$chats.append($message);
+    // this.$chats.empty();
+    this.$chats.append($message);
+    console.log('in here');
   },
 
   handleClick: function(event) {

@@ -11,7 +11,8 @@ var Messages = {
   // add to, and generally interact with the messages.
 
   add: function(message) {
-    Messages._data.push(message);
+    this._data = this._data.concat(message);
+    console.log(this._data);
   },
 
   retrieve: function(param) {
