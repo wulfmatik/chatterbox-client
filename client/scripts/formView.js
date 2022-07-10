@@ -11,18 +11,14 @@ var FormView = {
   },
 
   handleSubmit: function(event) {
-    // Stop the browser from submitting the form
     event.preventDefault();
 
-    // TODO: Currently, this is all handleSubmit does.
-    // Make this function actually send a message to the Parse API.
     var NewMessage = {
       username: App.username,
       text: $('#message').val(),
       roomname: RoomsView.$select.val()
     };
 
-    // messages render is not refreshing when submit button is used
     var pass = function() {
       App.fetch();
       $('#message').val('');
@@ -30,13 +26,6 @@ var FormView = {
 
     Messages.add(NewMessage);
     Parse.create(NewMessage, pass);
-    // $('#chats').empty();
-    // App.startSpinner();
-    // App.fetch(App.stopSpinner);
-    //console.log('server data upon submit', App.fetch());
-    // console.log('message data', Messages._data);
-    //console.log('click!');
-
   },
 
   setStatus: function(active) {

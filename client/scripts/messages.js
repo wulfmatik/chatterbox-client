@@ -7,12 +7,8 @@ var Messages = {
   // TODO: Define how you want to store your messages.
   _data: [],
 
-  // TODO: Define methods which allow you to retrieve from,
-  // add to, and generally interact with the messages.
-
   add: function(message) {
     this._data.push(message);
-    console.log(this._data);
   },
 
   retrieve: function(param) {

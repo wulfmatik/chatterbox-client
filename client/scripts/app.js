@@ -20,8 +20,6 @@ var App = {
     App.startSpinner();
     App.fetch(App.stopSpinner);
 
-    // TODO: Make sure the app loads data from the API
-    // continually, instead of just once at the start.
     setInterval(function() {
       if ($('select :selected').text()) {
         RoomsView.handleChange();
@@ -35,11 +33,6 @@ var App = {
   fetch: function(callback = ()=>{}) {
 
     Parse.readAll((data) => {
-      // examine the response from the server request:
-      console.log('server data', data);
-
-      // TODO: Use the data to update Messages and Rooms
-      // and re-render the corresponding views.
       Messages._data = [];
       Rooms._data = [];
       if (data.length !== 0) {

@@ -3,17 +3,17 @@
 var MessagesView = {
 
   $chats: $('#chats'),
+  $chat: $('.chat'),
+  $username: $('.username'),
 
   initialize: function() {
-    // TODO: Perform any work which needs to be done
-    // when this view loads.
-    // MessagesView.$chats.on('click', MessagesView.render());
     MessagesView.render();
+    MessagesView.$chats.on('click', '.chat .username', MessagesView.handleClick);
   },
 
   render: function() {
     // TODO: Render _all_ the messages.
-    console.log('Messages data arr in render func', Messages._data);
+   // console.log('Messages data arr in render func', Messages._data);
     for (var i = 0; i < Messages._data.length; i ++) {
       this.renderMessage(Messages._data[i]);
     }
@@ -21,16 +21,20 @@ var MessagesView = {
 
   renderMessage: function(message) {
     // TODO: Render a single message.
-    // append message to $chats
-    var $message = MessageView.render(message);
-
-    this.$chats.append($message);
-    console.log('in here');
+    //console.log(Friends._data)
+    if (Friends._data.includes(message.username)) {
+      var $message = MessageView.render(message, true);
+      console.log('username', message.username);
+      this.$chats.append($message);
+    } else {
+      var $message = MessageView.render(message, false);
+      this.$chats.append($message);
+    }
   },
 
   handleClick: function(event) {
     // TODO: handle a user clicking on a message
     // (this should add the sender to the user's friend list).
+    Friends._data.push(this.innerText);
   }
-
 };
